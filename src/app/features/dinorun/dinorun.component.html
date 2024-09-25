@@ -1,0 +1,30 @@
+<div class="game-container" (click)="jump()">
+  <div class="hud">
+    <div class="lives">
+      <span *ngFor="let life of livesArray">
+        <span class="mdi mdi-heart"></span>
+      </span>
+    </div>
+  </div>
+
+  <div class="character" [ngClass]="{ jump: isJumping }">
+    <span class="mdi mdi-google-downasaur"></span>
+  </div>
+
+  <div
+    class="obstacle"
+    *ngFor="let obstacle of obstacles"
+    [style.left.px]="obstacle.position"
+  >
+    <span class="mdi {{ obstacle.icon }}"></span>
+  </div>
+
+  <div class="powerup" *ngIf="powerup" [style.left.px]="powerup.position">
+    <span class="mdi mdi-heart-plus"></span>
+  </div>
+</div>
+
+<div class="game-over" *ngIf="gameOver">
+  <p>Game Over!</p>
+  <button (click)="restartGame()">Restart</button>
+</div>
